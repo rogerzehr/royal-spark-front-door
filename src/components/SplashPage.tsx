@@ -79,7 +79,7 @@ const SplashPage = () => {
                   </div>
                 ),
                 title: "Forward Thinking",
-                description: "Keeping USAF at the cutting edge of advancement"
+                description: "Keeping the 100 ARW & 352 SOW at the cutting edge of advancement"
               }
             ].map((feature, i) => (
               <div key={i} className={`flex flex-col space-y-2 animate-fade-in delay-${i * 100}`}>
@@ -96,15 +96,19 @@ const SplashPage = () => {
             <Button 
               size="lg" 
               onClick={handleEnter}
-              className="relative overflow-hidden group"
+              className="relative overflow-hidden group border-2 border-primary rounded-full px-6 hover:bg-primary/10 transition-all"
             >
               <span className="relative z-10">Enter Innovation Lab</span>
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity" />
             </Button>
             
             <div className="flex items-center space-x-4 mt-4 sm:mt-0">
-              <Button variant="outline" size="sm">
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <Button 
+                variant="outline" 
+                size="sm"
+                className="border-2 border-secondary rounded-full px-4 transition-all hover:bg-secondary/10 hover:text-secondary-foreground group"
+              >
+                <svg className="w-4 h-4 mr-2 text-secondary group-hover:text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
                 Upcoming Events
