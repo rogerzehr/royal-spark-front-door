@@ -6,17 +6,17 @@ import Particle from '@/components/Particle';
 import SparkIcon from '@/components/SparkIcon';
 import BackgroundGrid from './BackgroundGrid';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { Users, FlaskConical, BarChart2, MessageSquare } from 'lucide-react';
 
 const SplashPage = () => {
   const [isEntering, setIsEntering] = useState(false);
   const navigate = useNavigate();
 
-  const handleEnter = () => {
+  const handleNavigation = (path: string) => {
     setIsEntering(true);
-    // Navigate to main site after animation
+    // Navigate to the specific page after animation
     setTimeout(() => {
-      navigate('/home');
+      navigate(path);
     }, 500);
   };
 
@@ -92,38 +92,70 @@ const SplashPage = () => {
             ))}
           </div>
           
-          <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in delay-400">
+          {/* Navigation buttons */}
+          <div className="mt-10 sm:mt-12 flex flex-wrap justify-center gap-4 animate-fade-in delay-400">
+            {/* Main navigation buttons */}
             <Button 
-              size="lg" 
-              onClick={handleEnter}
-              className="relative overflow-hidden group border-2 border-primary rounded-full px-6 hover:bg-primary/10 transition-all"
+              onClick={() => handleNavigation('/staff')}
+              className="border-2 border-primary rounded-full px-6 hover:bg-primary/10 transition-all"
+              variant="outline"
             >
-              <span className="relative z-10">Enter Innovation Lab</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity" />
+              <Users className="mr-2 h-4 w-4" />
+              Staff
             </Button>
             
-            <div className="flex items-center space-x-4 mt-4 sm:mt-0">
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="border-2 border-secondary rounded-full px-4 transition-all hover:bg-secondary/10 hover:text-secondary-foreground group"
-              >
-                <svg className="w-4 h-4 mr-2 text-secondary group-hover:text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                Upcoming Events
-              </Button>
-              <Button 
-                variant="ghost" 
-                size="sm"
-                className="relative border-2 border-accent rounded-full px-4 transition-all hover:bg-accent/10 hover:text-accent-foreground group"
-              >
-                <svg className="w-4 h-4 mr-2 text-accent group-hover:text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                Weekly Podcasts
-              </Button>
-            </div>
+            <Button 
+              onClick={() => handleNavigation('/lab-equipment')}
+              className="border-2 border-secondary rounded-full px-6 hover:bg-secondary/10 transition-all"
+              variant="outline"
+            >
+              <FlaskConical className="mr-2 h-4 w-4" />
+              Lab/Equipment
+            </Button>
+            
+            <Button 
+              onClick={() => handleNavigation('/metrics')}
+              className="border-2 border-accent rounded-full px-6 hover:bg-accent/10 transition-all"
+              variant="outline"
+            >
+              <BarChart2 className="mr-2 h-4 w-4" />
+              Metrics
+            </Button>
+            
+            <Button 
+              onClick={() => handleNavigation('/engagement')}
+              className="border-2 border-primary rounded-full px-6 hover:bg-primary/10 transition-all"
+              variant="outline"
+            >
+              <MessageSquare className="mr-2 h-4 w-4" />
+              Engagement Strategy
+            </Button>
+          </div>
+          
+          {/* Secondary buttons */}
+          <div className="flex flex-wrap justify-center items-center space-x-4 mt-6">
+            <Button 
+              variant="outline" 
+              size="sm"
+              className="border-2 border-secondary rounded-full px-4 transition-all hover:bg-secondary/10 hover:text-secondary-foreground group"
+              onClick={() => handleNavigation('/events')}
+            >
+              <svg className="w-4 h-4 mr-2 text-secondary group-hover:text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Upcoming Events
+            </Button>
+            <Button 
+              variant="ghost" 
+              size="sm"
+              className="relative border-2 border-accent rounded-full px-4 transition-all hover:bg-accent/10 hover:text-accent-foreground group"
+              onClick={() => handleNavigation('/podcasts')}
+            >
+              <svg className="w-4 h-4 mr-2 text-accent group-hover:text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Weekly Podcasts
+            </Button>
           </div>
         </div>
       </div>
