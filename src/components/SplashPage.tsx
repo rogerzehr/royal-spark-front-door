@@ -43,8 +43,8 @@ const SplashPage = () => {
           </h1>
           
           <p className="mt-4 sm:mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in delay-100">
-            Team Mildenhall's innovation hub fostering creative solutions for mission excellence.
-            Empowering Airmen as intrapreneurs at the forefront of military innovation.
+            Team Mildenhall's Royal Spark Innovation Cell is a focused capability accelerator aligned with strategic mission objectives.
+            Empowering 100 ARW & 352 SOW Airmen as 'intrapreneurs' at the forefront of military innovation.
           </p>
           
           {/* Features section */}
@@ -113,7 +113,7 @@ const SplashPage = () => {
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                Newsletter
+                Weekly Podcasts
               </Button>
             </div>
           </div>
