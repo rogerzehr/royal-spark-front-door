@@ -106,7 +106,7 @@ const SplashPage = () => {
             
             <Button 
               onClick={() => handleNavigation('/lab-equipment')}
-              className="border-2 border-secondary rounded-full px-6 hover:bg-secondary/10 transition-all"
+              className="border-2 border-primary rounded-full px-6 hover:bg-primary/10 transition-all"
               variant="outline"
             >
               <FlaskConical className="mr-2 h-4 w-4" />
@@ -115,7 +115,7 @@ const SplashPage = () => {
             
             <Button 
               onClick={() => handleNavigation('/metrics')}
-              className="border-2 border-accent rounded-full px-6 hover:bg-accent/10 transition-all"
+              className="border-2 border-primary rounded-full px-6 hover:bg-primary/10 transition-all"
               variant="outline"
             >
               <BarChart2 className="mr-2 h-4 w-4" />
@@ -137,10 +137,10 @@ const SplashPage = () => {
             <Button 
               variant="outline" 
               size="sm"
-              className="border-2 border-secondary rounded-full px-4 transition-all hover:bg-secondary/10 hover:text-secondary-foreground group"
+              className="border-2 border-primary rounded-full px-4 transition-all hover:bg-primary/10 hover:text-primary-foreground group"
               onClick={() => handleNavigation('/events')}
             >
-              <svg className="w-4 h-4 mr-2 text-secondary group-hover:text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <svg className="w-4 h-4 mr-2 text-primary group-hover:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
               Upcoming Events
@@ -148,10 +148,10 @@ const SplashPage = () => {
             <Button 
               variant="ghost" 
               size="sm"
-              className="relative border-2 border-accent rounded-full px-4 transition-all hover:bg-accent/10 hover:text-accent-foreground group"
+              className="relative border-2 border-primary rounded-full px-4 transition-all hover:bg-primary/10 hover:text-primary-foreground group"
               onClick={() => handleNavigation('/podcasts')}
             >
-              <svg className="w-4 h-4 mr-2 text-accent group-hover:text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <svg className="w-4 h-4 mr-2 text-primary group-hover:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
               Weekly Podcasts
