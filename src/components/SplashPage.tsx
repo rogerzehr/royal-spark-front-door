@@ -6,7 +6,7 @@ import Particle from '@/components/Particle';
 import SparkIcon from '@/components/SparkIcon';
 import BackgroundGrid from './BackgroundGrid';
 import { useNavigate } from 'react-router-dom';
-import { Users, FlaskConical, BarChart2, MessageSquare } from 'lucide-react';
+import { Users, FlaskConical, BarChart2, MessageSquare, GraduationCap } from 'lucide-react';
 
 const SplashPage = () => {
   const [isEntering, setIsEntering] = useState(false);
@@ -129,6 +129,15 @@ const SplashPage = () => {
             >
               <MessageSquare className="mr-2 h-4 w-4" />
               Engagement Strategy
+            </Button>
+
+            <Button 
+              onClick={() => handleNavigation('/ambassadors')}
+              className="border-2 border-primary rounded-full px-6 hover:bg-primary/10 transition-all"
+              variant="outline"
+            >
+              <GraduationCap className="mr-2 h-4 w-4" />
+              Ambassadors/Fellowship
             </Button>
           </div>
           

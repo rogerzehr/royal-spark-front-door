@@ -13,6 +13,7 @@ import Metrics from "./pages/Metrics";
 import EngagementStrategy from "./pages/EngagementStrategy";
 import Events from "./pages/Events";
 import Podcasts from "./pages/Podcasts";
+import Ambassadors from "./pages/Ambassadors";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/engagement" element={<EngagementStrategy />} />
           <Route path="/events" element={<Events />} />
           <Route path="/podcasts" element={<Podcasts />} />
+          <Route path="/ambassadors" element={<Ambassadors />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
