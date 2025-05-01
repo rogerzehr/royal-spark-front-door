@@ -133,7 +133,7 @@ const SplashPage = () => {
 
             <Button 
               onClick={() => handleNavigation('/ambassadors')}
-              className="border-2 border-primary rounded-full px-6 hover:bg-primary/10 transition-all"
+              className="border-2 border-primary rounded-full px-6 hover:bg-primary/10 transition-all font-semibold"
               variant="outline"
             >
               <GraduationCap className="mr-2 h-4 w-4" />
