@@ -3,13 +3,49 @@ import React from 'react';
 import Logo from '@/components/Logo';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import { Card, CardContent } from '@/components/ui/card';
+import { Printer3d, Cpu, VrHeadset, Wrench, Calendar, Laptop, Cog } from 'lucide-react';
 
 const LabEquipment = () => {
   const navigate = useNavigate();
   
+  // Sample equipment categories
+  const equipmentCategories = [
+    {
+      title: "3D Printing",
+      icon: <Printer3d className="h-10 w-10 text-primary" />,
+      description: "State-of-the-art 3D printers for rapid prototyping and manufacturing custom parts."
+    },
+    {
+      title: "Computing Resources",
+      icon: <Cpu className="h-10 w-10 text-secondary" />,
+      description: "High-performance computing stations equipped for CAD, simulation, and data analysis."
+    },
+    {
+      title: "VR/AR Systems",
+      icon: <VrHeadset className="h-10 w-10 text-accent" />,
+      description: "Virtual and augmented reality equipment for training and visualization applications."
+    },
+    {
+      title: "Hardware Tools",
+      icon: <Wrench className="h-10 w-10 text-primary" />,
+      description: "Comprehensive set of tools for electronics work, mechanical assembly, and testing."
+    },
+    {
+      title: "Collaboration Spaces",
+      icon: <Laptop className="h-10 w-10 text-secondary" />,
+      description: "Configurable workspaces designed for team collaboration and design thinking sessions."
+    },
+    {
+      title: "CNC Equipment",
+      icon: <Cog className="h-10 w-10 text-accent" />,
+      description: "Computer numerical control machinery for precision manufacturing and fabrication."
+    }
+  ];
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="border-b py-4 px-6">
+    <div className="min-h-screen flex flex-col bg-background">
+      <header className="border-b py-4 px-6 bg-background/90 backdrop-blur-sm sticky top-0 z-10">
         <div className="container mx-auto flex justify-between items-center">
           <Logo />
           <Button variant="outline" size="sm" onClick={() => navigate('/')}>Back to Home</Button>
@@ -17,17 +53,129 @@ const LabEquipment = () => {
       </header>
 
       <main className="flex-1">
-        <div className="container mx-auto px-4 py-12">
-          <h1 className="text-4xl font-bold mb-6">Lab & Equipment</h1>
-          <p className="text-xl text-muted-foreground mb-8">
-            This page will showcase our innovation lab equipment and resources.
-          </p>
-        </div>
+        {/* Hero Section */}
+        <section className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/5 z-0"></div>
+          <div className="container mx-auto px-4 py-20 relative z-1">
+            <div className="max-w-3xl mx-auto text-center">
+              <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent animate-fade-in">
+                Innovation Lab & Equipment
+              </h1>
+              <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-fade-in delay-100">
+                Cutting-edge resources and facilities to transform innovative ideas into tangible solutions.
+              </p>
+              <Button 
+                className="rounded-full px-8 py-6 text-lg bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-all animate-fade-in delay-200"
+              >
+                <Calendar className="mr-2 h-5 w-5" />
+                <span>Schedule Lab Access</span>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Equipment Categories */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-12 text-center">Available Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {equipmentCategories.map((category, index) => (
+                <Card key={index} className="bg-background border-0 shadow-md hover:shadow-lg transition-all h-full">
+                  <CardContent className="p-8 flex flex-col items-center text-center h-full">
+                    <div className="mb-6">
+                      {category.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold mb-4">{category.title}</h3>
+                    <p className="text-muted-foreground flex-grow">
+                      {category.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Lab Tour Section */}
+        <section className="py-16 bg-gradient-to-r from-primary/5 to-accent/5">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl font-bold mb-6">Lab Tour</h2>
+              <p className="text-lg text-muted-foreground mb-8">
+                Take a virtual tour of our innovation facilities and get familiar with our equipment and resources.
+              </p>
+              <div className="aspect-w-16 aspect-h-9 bg-muted/20 rounded-lg mb-8 max-w-3xl mx-auto">
+                <div className="flex items-center justify-center h-72">
+                  <div className="flex items-center justify-center rounded-full bg-primary/10 h-20 w-20">
+                    <svg className="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <Button className="rounded-full px-6 py-2 bg-primary hover:bg-primary/90">
+                Request In-Person Tour
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Reservation Instructions */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold mb-8 text-center">How to Reserve Equipment</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+                <Card className="bg-background border-0 shadow-md p-6 text-center">
+                  <div className="inline-flex h-12 w-12 rounded-full bg-primary/10 items-center justify-center mb-4">
+                    <span className="text-2xl font-bold text-primary">1</span>
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">Create an Account</h3>
+                  <p className="text-muted-foreground text-sm">
+                    Register for our equipment reservation system using your military email.
+                  </p>
+                </Card>
+                
+                <Card className="bg-background border-0 shadow-md p-6 text-center">
+                  <div className="inline-flex h-12 w-12 rounded-full bg-primary/10 items-center justify-center mb-4">
+                    <span className="text-2xl font-bold text-primary">2</span>
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">Complete Training</h3>
+                  <p className="text-muted-foreground text-sm">
+                    Attend required safety and operational training for equipment you wish to use.
+                  </p>
+                </Card>
+                
+                <Card className="bg-background border-0 shadow-md p-6 text-center">
+                  <div className="inline-flex h-12 w-12 rounded-full bg-primary/10 items-center justify-center mb-4">
+                    <span className="text-2xl font-bold text-primary">3</span>
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">Book Resources</h3>
+                  <p className="text-muted-foreground text-sm">
+                    Reserve equipment and lab space through our online scheduling system.
+                  </p>
+                </Card>
+              </div>
+              
+              <div className="text-center">
+                <Button className="rounded-full px-6 py-2 bg-accent hover:bg-accent/90">
+                  Access Reservation System
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       
-      <footer className="border-t py-6 px-4">
-        <div className="container mx-auto text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Royal Spark Innovation Lab · Team Mildenhall
+      <footer className="border-t py-8 px-4 bg-muted/10">
+        <div className="container mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <Logo className="mb-4 md:mb-0" />
+            <div className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} Royal Spark Innovation Lab · Team Mildenhall
+            </div>
+          </div>
         </div>
       </footer>
     </div>
