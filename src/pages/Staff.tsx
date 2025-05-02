@@ -4,44 +4,66 @@ import Logo from '@/components/Logo';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
-import { Mail, Phone, Calendar, ExternalLink } from 'lucide-react';
+import { Mail, Phone, FileText, ExternalLink } from 'lucide-react';
 
 const Staff = () => {
   const navigate = useNavigate();
   
-  // Sample staff data
+  // Detailed staff data with pictures, duty descriptions, and expanded bios
   const staffMembers = [
     {
       name: "Maj. John Doe",
       title: "Innovation Lab Director",
-      photo: "/placeholder.svg",
+      photo: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=300&h=300",
       email: "john.doe@us.af.mil",
       phone: "555-123-4567",
-      bio: "10+ years experience in military innovation and digital transformation initiatives."
+      duty: "Directs all innovation lab activities, strategic planning, and stakeholder management",
+      bio: "Maj. Doe has 10+ years experience in military innovation and digital transformation initiatives. He served as the Chief Digital Officer at Ramstein AB before joining RAF Mildenhall. John holds an MS in Computer Science from the Air Force Institute of Technology and has led multiple award-winning innovation projects across USAFE."
     },
     {
       name: "Capt. Jane Smith",
       title: "Innovation Officer",
-      photo: "/placeholder.svg",
+      photo: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=300&h=300",
       email: "jane.smith@us.af.mil",
       phone: "555-123-4568",
-      bio: "Background in UX/UI design and agile methodologies. Leads the design thinking workshops."
+      duty: "Leads design thinking workshops, innovation training, and technology adoption initiatives",
+      bio: "Capt. Smith specializes in UX/UI design and agile methodologies with a background in human-centered design. She previously worked with AFWERX to develop rapid prototype solutions for operational challenges. Jane has a BS in Systems Engineering from the Air Force Academy and is certified in Design Thinking from Stanford's d.school."
     },
     {
       name: "TSgt. Michael Johnson",
       title: "Technology Integration Specialist",
-      photo: "/placeholder.svg",
+      photo: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=300&h=300",
       email: "michael.johnson@us.af.mil",
       phone: "555-123-4569",
-      bio: "Expert in emerging technologies and their applications in military environments."
+      duty: "Manages lab equipment, trains users on technology systems, and provides technical support",
+      bio: "TSgt. Johnson is an expert in emerging technologies and their applications in military environments. With certifications in CompTIA A+, Network+, and Security+, he manages the lab's technical infrastructure and maintains all specialized equipment. Michael previously served as a Cyber Systems Operator and brings valuable expertise in systems integration."
     },
     {
       name: "MSgt. Sarah Williams",
       title: "Innovation Coach",
-      photo: "/placeholder.svg",
+      photo: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=300&h=300",
       email: "sarah.williams@us.af.mil",
       phone: "555-123-4570",
-      bio: "Certified in creative problem solving and innovation methodologies. Facilitates innovation training."
+      duty: "Facilitates innovation training, coaches project teams, and manages the innovation pipeline",
+      bio: "MSgt. Williams is certified in creative problem solving and innovation methodologies. She leads the lab's training programs and mentors project teams through the innovation process. With previous experience at the Air Force CyberWorx, Sarah specializes in bringing diverse teams together to solve complex challenges through collaborative innovation."
+    },
+    {
+      name: "1Lt. David Rodriguez",
+      title: "Innovation Strategy Officer",
+      photo: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=300&h=300",
+      email: "david.rodriguez@us.af.mil",
+      phone: "555-123-4571",
+      duty: "Develops innovation strategy, facilitates stakeholder engagement, and manages metrics collection",
+      bio: "1Lt. Rodriguez brings expertise in strategic planning and data analytics to the innovation lab. With an MBA from the University of Michigan, he leads our measurement and evaluation efforts to demonstrate impact and return on investment. David previously worked with the Defense Innovation Unit on several national security innovation initiatives."
+    },
+    {
+      name: "A1C Emma Chen",
+      title: "Digital Media Specialist",
+      photo: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=300&h=300",
+      email: "emma.chen@us.af.mil",
+      phone: "555-123-4572",
+      duty: "Creates digital content, manages social media, and documents innovation activities",
+      bio: "A1C Chen specializes in digital media production including photography, videography, and graphic design. She manages the lab's digital presence and creates compelling content to showcase innovation activities. With a background in multimedia design, Emma helps tell the story of innovation across RAF Mildenhall through various digital channels."
     }
   ];
 
@@ -74,14 +96,14 @@ const Staff = () => {
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-12 text-center">Innovation Lab Staff</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
               {staffMembers.map((member, index) => (
                 <Card key={index} className="bg-background border-0 shadow-md hover:shadow-lg transition-all overflow-hidden">
                   <CardContent className="p-0">
                     <div className="flex flex-col sm:flex-row">
-                      <div className="sm:w-1/3">
+                      <div className="sm:w-2/5">
                         <div className="h-full bg-accent/10 flex items-center justify-center p-6">
-                          <div className="w-24 h-24 rounded-full bg-accent/20 overflow-hidden">
+                          <div className="w-32 h-32 rounded-full bg-accent/20 overflow-hidden">
                             <img 
                               src={member.photo} 
                               alt={member.name} 
@@ -90,10 +112,19 @@ const Staff = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="p-6 sm:w-2/3">
+                      <div className="p-6 sm:w-3/5">
                         <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
-                        <p className="text-accent font-medium mb-3">{member.title}</p>
-                        <p className="text-muted-foreground mb-4 text-sm">{member.bio}</p>
+                        <p className="text-accent font-medium mb-2">{member.title}</p>
+                        
+                        <div className="flex items-center mb-3 text-sm">
+                          <FileText className="h-4 w-4 mr-2 text-accent" />
+                          <span className="text-muted-foreground">{member.duty}</span>
+                        </div>
+                        
+                        <div className="border-t border-border pt-3 mt-3">
+                          <h4 className="font-medium mb-2">Biography:</h4>
+                          <p className="text-muted-foreground text-sm mb-4">{member.bio}</p>
+                        </div>
                         
                         <div className="space-y-2 text-sm">
                           <div className="flex items-center">

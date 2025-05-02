@@ -4,42 +4,72 @@ import Logo from '@/components/Logo';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
-import { Printer3d, Cpu, VrHeadset, Wrench, Calendar, Laptop, Cog } from 'lucide-react';
+import { Printer, Cpu, Headset, Wrench, Calendar, Laptop, Cog, FileSearch } from 'lucide-react';
 
 const LabEquipment = () => {
   const navigate = useNavigate();
   
-  // Sample equipment categories
+  // Equipment categories with manuals
   const equipmentCategories = [
     {
       title: "3D Printing",
-      icon: <Printer3d className="h-10 w-10 text-primary" />,
-      description: "State-of-the-art 3D printers for rapid prototyping and manufacturing custom parts."
+      icon: <Printer className="h-10 w-10 text-primary" />,
+      description: "State-of-the-art 3D printers for rapid prototyping and manufacturing custom parts.",
+      equipment: [
+        { name: "Ultimaker S5", manual: "/manuals/ultimaker-s5.pdf" },
+        { name: "Formlabs Form 3", manual: "/manuals/formlabs-form3.pdf" },
+        { name: "Prusa i3 MK3S+", manual: "/manuals/prusa-i3-mk3s.pdf" }
+      ]
     },
     {
       title: "Computing Resources",
       icon: <Cpu className="h-10 w-10 text-secondary" />,
-      description: "High-performance computing stations equipped for CAD, simulation, and data analysis."
+      description: "High-performance computing stations equipped for CAD, simulation, and data analysis.",
+      equipment: [
+        { name: "Dell Precision 7920 Workstations", manual: "/manuals/dell-precision-7920.pdf" },
+        { name: "NVIDIA RTX A6000 GPUs", manual: "/manuals/nvidia-rtx-a6000.pdf" },
+        { name: "Apple Mac Studio", manual: "/manuals/mac-studio.pdf" }
+      ]
     },
     {
       title: "VR/AR Systems",
-      icon: <VrHeadset className="h-10 w-10 text-accent" />,
-      description: "Virtual and augmented reality equipment for training and visualization applications."
+      icon: <Headset className="h-10 w-10 text-accent" />,
+      description: "Virtual and augmented reality equipment for training and visualization applications.",
+      equipment: [
+        { name: "Meta Quest Pro", manual: "/manuals/meta-quest-pro.pdf" },
+        { name: "HTC Vive Pro 2", manual: "/manuals/htc-vive-pro2.pdf" },
+        { name: "Microsoft HoloLens 2", manual: "/manuals/hololens-2.pdf" }
+      ]
     },
     {
       title: "Hardware Tools",
       icon: <Wrench className="h-10 w-10 text-primary" />,
-      description: "Comprehensive set of tools for electronics work, mechanical assembly, and testing."
+      description: "Comprehensive set of tools for electronics work, mechanical assembly, and testing.",
+      equipment: [
+        { name: "Hakko FX-888D Soldering Station", manual: "/manuals/hakko-fx888d.pdf" },
+        { name: "Oscilloscope - Rigol DS1054Z", manual: "/manuals/rigol-ds1054z.pdf" },
+        { name: "Electronics Testing Kit", manual: "/manuals/electronics-kit.pdf" }
+      ]
     },
     {
       title: "Collaboration Spaces",
       icon: <Laptop className="h-10 w-10 text-secondary" />,
-      description: "Configurable workspaces designed for team collaboration and design thinking sessions."
+      description: "Configurable workspaces designed for team collaboration and design thinking sessions.",
+      equipment: [
+        { name: "Digital Whiteboard - Samsung Flip 2", manual: "/manuals/samsung-flip2.pdf" },
+        { name: "Conference System - Poly Studio", manual: "/manuals/poly-studio.pdf" },
+        { name: "Modular Furniture System", manual: "/manuals/modular-furniture.pdf" }
+      ]
     },
     {
       title: "CNC Equipment",
       icon: <Cog className="h-10 w-10 text-accent" />,
-      description: "Computer numerical control machinery for precision manufacturing and fabrication."
+      description: "Computer numerical control machinery for precision manufacturing and fabrication.",
+      equipment: [
+        { name: "Bantam Tools Desktop CNC", manual: "/manuals/bantam-tools-cnc.pdf" },
+        { name: "Carbide 3D Nomad Pro", manual: "/manuals/carbide-nomad-pro.pdf" },
+        { name: "Laser Cutter - Glowforge Pro", manual: "/manuals/glowforge-pro.pdf" }
+      ]
     }
   ];
 
@@ -74,21 +104,38 @@ const LabEquipment = () => {
           </div>
         </section>
 
-        {/* Equipment Categories */}
+        {/* Equipment Categories with Manuals */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-12 text-center">Available Resources</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {equipmentCategories.map((category, index) => (
                 <Card key={index} className="bg-background border-0 shadow-md hover:shadow-lg transition-all h-full">
-                  <CardContent className="p-8 flex flex-col items-center text-center h-full">
-                    <div className="mb-6">
-                      {category.icon}
+                  <CardContent className="p-8 flex flex-col h-full">
+                    <div className="flex flex-col items-center text-center mb-6">
+                      <div className="mb-4">
+                        {category.icon}
+                      </div>
+                      <h3 className="text-xl font-semibold">{category.title}</h3>
+                      <p className="text-muted-foreground mt-2">
+                        {category.description}
+                      </p>
                     </div>
-                    <h3 className="text-xl font-semibold mb-4">{category.title}</h3>
-                    <p className="text-muted-foreground flex-grow">
-                      {category.description}
-                    </p>
+                    
+                    <div className="mt-4 pt-4 border-t border-border flex-grow">
+                      <h4 className="text-md font-medium mb-2">Available Equipment:</h4>
+                      <ul className="space-y-3">
+                        {category.equipment.map((item, idx) => (
+                          <li key={idx} className="flex justify-between items-center text-sm">
+                            <span>{item.name}</span>
+                            <Button variant="ghost" size="sm" className="flex items-center gap-1 text-primary hover:text-primary/80">
+                              <FileSearch className="h-4 w-4" />
+                              <span>Manual</span>
+                            </Button>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
