@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Logo from '@/components/Logo';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
@@ -12,8 +12,11 @@ const Podcasts = () => {
   const navigate = useNavigate();
   const [playingId, setPlayingId] = useState<number | null>(null);
   const [volume, setVolume] = useState(80);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   
-  // Updated podcast episode for S1E1
+  // Updated podcast episode with Supabase audio URL
   const podcastEpisodes = [
     {
       id: 1,
@@ -22,17 +25,80 @@ const Podcasts = () => {
       duration: "45:22",
       date: new Date(2025, 3, 28), // April 28, 2025
       description: "This episode discusses how to layer defense on military installations to protect against small unmanned aerial systems (sUAS) activity, exploring cutting-edge countermeasures and strategic approaches.",
-      audioFile: "/podcasts/suas-defense.wav",
+      audioFile: "https://mxqlhlocxthndqatwloi.supabase.co/storage/v1/object/public/podcasts//Layered%20sUAS%20Defense.mp3",
       image: "https://images.unsplash.com/photo-1487887235947-a955ef187fcc?auto=format&fit=crop&w=600&h=400",
       hosts: ["AI Royal Spark Members"],
       guests: ["Defense Systems Specialists"]
     }
   ];
   
+  useEffect(() => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio();
+      audioRef.current.addEventListener('timeupdate', updateProgress);
+      audioRef.current.addEventListener('loadedmetadata', updateDuration);
+    }
+    
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.removeEventListener('timeupdate', updateProgress);
+        audioRef.current.removeEventListener('loadedmetadata', updateDuration);
+        audioRef.current.pause();
+      }
+    };
+  }, []);
+  
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume / 100;
+    }
+  }, [volume]);
+  
+  const updateProgress = () => {
+    if (audioRef.current) {
+      setCurrentTime(audioRef.current.currentTime);
+    }
+  };
+  
+  const updateDuration = () => {
+    if (audioRef.current) {
+      setDuration(audioRef.current.duration);
+    }
+  };
+  
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+  };
+  
+  const handleProgressChange = (values: number[]) => {
+    if (audioRef.current && values.length > 0) {
+      audioRef.current.currentTime = values[0];
+      setCurrentTime(values[0]);
+    }
+  };
+  
   const togglePlay = (id: number) => {
+    const episode = podcastEpisodes.find(ep => ep.id === id);
+    if (!episode) return;
+    
     if (playingId === id) {
+      // Currently playing, so pause
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
       setPlayingId(null);
     } else {
+      // Not currently playing this episode
+      if (audioRef.current) {
+        // Load new audio file
+        audioRef.current.src = episode.audioFile;
+        audioRef.current.load();
+        audioRef.current.play().catch(err => {
+          console.error("Error playing audio:", err);
+        });
+      }
       setPlayingId(id);
     }
   };
@@ -117,6 +183,22 @@ const Podcasts = () => {
                       </div>
                       
                       <div>
+                        {playingId === podcastEpisodes[0].id && audioRef.current && (
+                          <div className="mb-4">
+                            <Slider
+                              value={[currentTime]}
+                              max={duration || 100}
+                              step={1}
+                              onValueChange={handleProgressChange}
+                              className="my-4"
+                            />
+                            <div className="flex justify-between text-xs text-muted-foreground">
+                              <span>{formatTime(currentTime)}</span>
+                              <span>{formatTime(duration)}</span>
+                            </div>
+                          </div>
+                        )}
+                        
                         <div className="flex items-center space-x-3 mb-4">
                           <Button 
                             size="icon"
@@ -158,7 +240,11 @@ const Podcasts = () => {
                         </div>
                         
                         <div className="flex space-x-3">
-                          <Button variant="outline" className="flex-1">
+                          <Button 
+                            variant="outline" 
+                            className="flex-1"
+                            onClick={() => window.open(podcastEpisodes[0].audioFile, '_blank')}
+                          >
                             <FileAudio className="mr-2 h-4 w-4" />
                             <span>Download</span>
                           </Button>
