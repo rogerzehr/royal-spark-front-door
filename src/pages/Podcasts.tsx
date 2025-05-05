@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import Logo from '@/components/Logo';
 import { Button } from '@/components/ui/button';
@@ -113,23 +112,18 @@ const Podcasts = () => {
       </header>
 
       <main className="flex-1">
-        {/* Hero Section */}
+        {/* Hero Section - Updated title to Monthly Podcasts */}
         <section className="relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-accent/5 z-0"></div>
           <div className="container mx-auto px-4 py-20 relative z-1">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent animate-fade-in">
-                Royal Spark Podcasts
+                Monthly Podcasts
               </h1>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-fade-in delay-100">
                 Weekly discussions on innovation, leadership, and technology transforming the modern military environment.
               </p>
-              <Button 
-                className="rounded-full px-8 py-6 text-lg bg-gradient-to-r from-secondary to-primary hover:opacity-90 transition-all animate-fade-in delay-200 group"
-              >
-                <Headphones className="mr-2 h-5 w-5" />
-                <span>Listen Now</span>
-              </Button>
+              {/* Removed the Listen Now button */}
             </div>
           </div>
         </section>
